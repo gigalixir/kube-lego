@@ -12,12 +12,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/jetstack/kube-lego/pkg/acme"
-	"github.com/jetstack/kube-lego/pkg/ingress"
-	kubelego "github.com/jetstack/kube-lego/pkg/kubelego_const"
-	"github.com/jetstack/kube-lego/pkg/provider/gce"
-	"github.com/jetstack/kube-lego/pkg/provider/nginx"
-	"github.com/jetstack/kube-lego/pkg/secret"
+	"github.com/gigalixir/kube-lego/pkg/acme"
+	"github.com/gigalixir/kube-lego/pkg/ingress"
+	kubelego "github.com/gigalixir/kube-lego/pkg/kubelego_const"
+	"github.com/gigalixir/kube-lego/pkg/provider/gce"
+	"github.com/gigalixir/kube-lego/pkg/provider/nginx"
+	"github.com/gigalixir/kube-lego/pkg/secret"
 
 	log "github.com/Sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/util/intstr"

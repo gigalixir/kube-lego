@@ -1,9 +1,9 @@
 package nginx
 
 import (
-	"github.com/jetstack/kube-lego/pkg/ingress"
-	kubelego "github.com/jetstack/kube-lego/pkg/kubelego_const"
-	"github.com/jetstack/kube-lego/pkg/service"
+	"github.com/gigalixir/kube-lego/pkg/ingress"
+	kubelego "github.com/gigalixir/kube-lego/pkg/kubelego_const"
+	"github.com/gigalixir/kube-lego/pkg/service"
 
 	"sort"
 

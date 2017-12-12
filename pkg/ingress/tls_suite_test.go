@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jetstack/kube-lego/pkg/kubelego_const"
-	"github.com/jetstack/kube-lego/pkg/mocks"
+	"github.com/gigalixir/kube-lego/pkg/kubelego_const"
+	"github.com/gigalixir/kube-lego/pkg/mocks"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/golang/mock/gomock"
