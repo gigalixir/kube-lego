@@ -17,7 +17,6 @@ import (
 	"github.com/jetstack/kube-lego/pkg/kubelego_const"
 	"golang.org/x/crypto/acme"
 	"golang.org/x/net/context"
-	"time"
 )
 
 func (a *Acme) ensureAcmeClient() error {
@@ -143,7 +142,7 @@ func (a *Acme) ObtainCertificate(domains []string) (data map[string][]byte, err 
 			}
 
 			b := backoff.NewExponentialBackOff()
-			b.MaxElapsedTime = time.Duration(time.Second * 60)
+			b.MaxElapsedTime = a.kubelego.ExponentialBackoffMaxElapsedTime()
 
 			err = backoff.Retry(op, b)
 			if err != nil {

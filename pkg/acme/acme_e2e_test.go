@@ -30,6 +30,7 @@ func TestAcme_E2E(t *testing.T) {
 	mockKL.EXPECT().LegoURL().MinTimes(1).Return("https://acme-staging.api.letsencrypt.org/directory")
 	mockKL.EXPECT().LegoEmail().MinTimes(1).Return("kube-lego-e2e@example.com")
 	mockKL.EXPECT().SaveAcmeUser(gomock.Any()).MinTimes(1).Return(nil)
+	mockKL.EXPECT().ExponentialBackoffMaxElapsedTime().MinTimes(1).Return(time.Second * 60)
 
 	// set up ngrok
 	command := []string{"ngrok", "http", "--bind-tls", "false", "8181"}
