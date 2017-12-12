@@ -1,4 +1,4 @@
-ACCOUNT=jetstack
+ACCOUNT=gigalixir
 APP_NAME=kube-lego
 
 PACKAGE_NAME=github.com/${ACCOUNT}/${APP_NAME}
@@ -7,7 +7,7 @@ GO_VERSION=1.8
 GOOS := linux
 GOARCH := amd64
 
-DOCKER_IMAGE=${ACCOUNT}/${APP_NAME}
+DOCKER_IMAGE=us.gcr.io/gigalixir-152404/${APP_NAME}
 
 BUILD_DIR=_build
 TEST_DIR=_test
