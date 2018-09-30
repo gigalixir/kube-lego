@@ -49,7 +49,13 @@ func (a *Acme) testReachablilty(domain string) error {
 	url.Path = kubelego.AcmeHttpSelfTest
 
 	a.Log().WithField("domain", domain).Debugf("testing reachability of %s", url.String())
-	response, err := http.Get(url.String())
+	timeout := time.Duration(5 * time.Second)
+	client := http.Client{
+		Timeout: timeout,
+	}
+	response, err := client.Get(url.String())
+
+	// response, err := http.Get(url.String())
 	if err != nil {
 		return err
 	}
