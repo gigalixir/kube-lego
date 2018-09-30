@@ -28,7 +28,7 @@ func TestAcme_E2E(t *testing.T) {
 	mockKL.EXPECT().LegoHTTPPort().AnyTimes().Return(intstr.FromInt(8181))
 	mockKL.EXPECT().AcmeUser().MinTimes(1).Return(nil, errors.New("I am only mocked"))
 	mockKL.EXPECT().LegoURL().MinTimes(1).Return("https://acme-staging.api.letsencrypt.org/directory")
-	mockKL.EXPECT().LegoEmail().MinTimes(1).Return("kube-lego-e2e@example.com")
+	mockKL.EXPECT().LegoEmail().MinTimes(1).Return("kube-lego-e2e@gigalixir.com")
 	mockKL.EXPECT().SaveAcmeUser(gomock.Any()).MinTimes(1).Return(nil)
 	mockKL.EXPECT().ExponentialBackoffMaxElapsedTime().MinTimes(1).Return(time.Second * 60)
 
@@ -76,5 +76,4 @@ func TestAcme_E2E(t *testing.T) {
 
 	log.Infof("trying to obtain a certificate for the domain")
 	a.ObtainCertificate([]string{domain})
-
 }
