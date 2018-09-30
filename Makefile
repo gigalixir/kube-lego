@@ -92,7 +92,7 @@ push: image
 	set -e; \
 	for tag in $(IMAGE_TAGS); do \
 		docker tag  $(DOCKER_IMAGE):$(BUILD_TAG) $(DOCKER_IMAGE):$${tag} ; \
-		docker push $(DOCKER_IMAGE):$${tag}; \
+		gcloud docker -- push $(DOCKER_IMAGE):$${tag}; \
 	done
 
 release:
