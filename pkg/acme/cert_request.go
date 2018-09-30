@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"net/url"
 	"sync"
+	"time"
 
 	"github.com/cenk/backoff"
 	"github.com/gigalixir/kube-lego/pkg/kubelego_const"
