@@ -9,10 +9,12 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"net/url"
 	"sync"
 	"time"
+	"crypto/tls"
 
 	"github.com/cenk/backoff"
 	"github.com/gigalixir/kube-lego/pkg/kubelego_const"
@@ -50,9 +52,22 @@ func (a *Acme) testReachablilty(domain string) error {
 	url.Path = kubelego.AcmeHttpSelfTest
 
 	a.Log().WithField("domain", domain).Debugf("testing reachability of %s", url.String())
-	timeout := time.Duration(5 * time.Second)
+	// timeout := time.Duration(5 * time.Second)
+	timeout := 15 * time.Second
 	client := http.Client{
 		Timeout: timeout,
+		Transport: &http.Transport{
+			Dial: (&net.Dialer{
+				Timeout:   30 * time.Second,
+				KeepAlive: 30 * time.Second,
+			}).Dial,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ResponseHeaderTimeout: 10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+			TLSClientConfig: &tls.Config{
+				NextProtos: []string{"h1"},
+			},
+		},
 	}
 	response, err := client.Get(url.String())
 
