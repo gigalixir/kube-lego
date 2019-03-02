@@ -155,6 +155,30 @@ You can inspect the trace sample running
 
 `$ go tool trace kube-lego.trace`
 
+## REPL Development Testing
+bin/gore
+:import "github.com/gigalixir/kube-lego/pkg/kubelego"
+:import "net/http"
+:import "time"
+:import "net"
+:import "crypto/tls"
+timeout := 15 * time.Second;
+	client := http.Client{
+		Timeout: timeout,
+		Transport: &http.Transport{
+			Dial: (&net.Dialer{
+				Timeout:   30 * time.Second,
+				KeepAlive: 30 * time.Second,
+			}).Dial,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ResponseHeaderTimeout: 10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+			TLSClientConfig: &tls.Config{
+				NextProtos: []string{"h1"},
+			},
+		},
+	}
+response, err := client.Get("https://www.google.com/")
 
 ## Authors
 

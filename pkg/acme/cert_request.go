@@ -3,6 +3,7 @@ package acme
 import (
 	"bytes"
 	"crypto/rand"
+	"crypto/tls"
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/pem"
@@ -14,7 +15,6 @@ import (
 	"net/url"
 	"sync"
 	"time"
-	"crypto/tls"
 
 	"github.com/cenk/backoff"
 	"github.com/gigalixir/kube-lego/pkg/kubelego_const"
@@ -67,6 +67,9 @@ func (a *Acme) testReachablilty(domain string) error {
 			TLSClientConfig: &tls.Config{
 				NextProtos: []string{"h1"},
 			},
+		},
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
 		},
 	}
 	response, err := client.Get(url.String())
