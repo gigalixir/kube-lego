@@ -180,6 +180,9 @@ timeout := 15 * time.Second;
 	}
 response, err := client.Get("https://www.google.com/")
 
+## Deploying
+make push
+
 ## Authors
 
 * Christian Simon for [Jetstack Ltd](http://www.jetstack.io)
